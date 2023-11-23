@@ -148,6 +148,7 @@ const productos = {
       document.getElementById('btn-discount').removeAttribute('disabled')
       document.getElementById('input-discount').value = ""
       document.getElementById('cualquiera')?.remove()
+      document.getElementById('buy-action').setAttribute('disabled', '')
 
       Swal.fire({
         title: "Compra procesada!",
@@ -201,6 +202,11 @@ const productos = {
 
       let totalPrice = cartProducts.reduce((acc, el) => acc + (el.qty * el.price), 0); 
 
+      if(totalPrice > 0){
+        document.getElementById('buy-action').removeAttribute('disabled')
+      } else {
+        document.getElementById('buy-action').setAttribute('disabled', '')
+      }
       document.querySelector('#product-counter').textContent = cartProducts.reduce((acc, el) => acc + el.qty, 0);
 
       document.getElementById('total-price').innerHTML =  totalPrice
